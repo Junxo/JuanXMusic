@@ -5,7 +5,7 @@ from datetime import datetime
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram import filters
 from pyrogram.types import Message
-from JuanXMusic.config import *
+from JuanXMusic import *
 from JuanXMusic import app
 from JuanXMusic.core.call import Anony
 from JuanXMusic.utils import bot_sys_stats
