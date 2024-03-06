@@ -23,6 +23,18 @@ def get_arg(message: Message):
         return ""
     return " ".join(split[1:])
 
+async def isAdmin(filter, client, update):
+    try:
+        member = await client.get_chat_member(chat_id=update.chat.id, user_id=update.from_user.id)
+    except FloodWait as wait_err:
+        await sleep(wait_err.value)
+    except UserNotParticipant:
+        return False
+    except:
+        return False
+
+    return member.status in [STATUS.OWNER, STATUS.ADMINISTRATOR]
+
 
 @app.on_message(filters.command(["tagall", "@all"]) & ~BANNED_USERS)
 @language
