@@ -12,36 +12,9 @@ from JuanXMusic.utils import bot_sys_stats
 from JuanXMusic.utils.decorators.language import language
 from JuanXMusic.utils.inline import supp_markup
 from config import BANNED_USERS, PING_IMG_URL
-from pyrogram import filters, enums
 
 
-STATUS = enums.ChatMemberStatus
-spam_chats = []
-emoji = "😀 😃 😄 😁 😆 😅 😂 🤣 😭 😗 😙 😚 😘 🥰 😍 🤩 🥳 🤗 🙃 🙂 ☺️ 😊 😏 😌 😉 🤭 😶 😐 😑 😔 😋 😛 😝 😜 🤪 🤔 🤨 🧐 🙄 😒 😤 😠 🤬 ☹️ 🙁 😕 😟 🥺 😳 😬 🤐 🤫 😰 😨 😧 😦 😮 😯 😲 😱 🤯 😢 😥 😓 😞 😖 😣 😩 😫 🤤 🥱 😴 😪 🌛 🌜 🌚 🌝 🎲 🧩 ♟ 🎯 🎳 🎭💕 💞 💓 💗 💖 ❤️‍🔥 💔 🤎 🤍 🖤 ❤️ 🧡 💛 💚 💙 💜 💘 💝 🐵 🦁 🐯 🐱 🐶 🐺 🐻 🐨 🐼 🐹 🐭 🐰 🦊 🦝 🐮 🐷 🐽 🐗 🦓 🦄 🐴 🐸 🐲 🦎 🐉 🦖 🦕 🐢 🐊 🐍 🐁 🐀 🐇 🐈 🐩 🐕 🦮 🐕‍🦺 🐅 🐆 🐎 🐖 🐄 🐂 🐃 🐏 🐑 🐐 🦌 🦙 🦥 🦘 🐘 🦏 🦛 🦒 🐒 🦍 🦧 🐪 🐫 🐿️ 🦨 🦡 🦔 🦦 🦇 🐓 🐔 🐣 🐤 🐥 🐦 🦉 🦅 🦜 🕊️ 🦢 🦩 🦚 🦃 🦆 🐧 🦈 🐬 🐋 🐳 🐟 🐠 🐡 🦐 🦞 🦀 🦑 🐙 🦪 🦂 🕷️ 🦋 🐞 🐝 🦟 🦗 🐜 🐌 🐚 🕸️ 🐛 🐾 🌞 🤢 🤮 🤧 🤒 🍓 🍒 🍎 🍉 🍑 🍊 🥭 🍍 🍌 🌶 🍇 🥝 🍐 🍏 🍈 🍋 🍄 🥕 🍠 🧅 🌽 🥦 🥒 🥬 🥑 🥯 🥖 🥐 🍞 🥜 🌰 🥔 🧄 🍆 🧇 🥞 🥚 🧀 🥓 🥩 🍗 🍖 🥙 🌯 🌮 🍕 🍟 🥨 🥪 🌭 🍔 🧆 🥘 🍝 🥫 🥣 🥗 🍲 🍛 🍜 🍢 🥟 🍱 🍚 🥡 🍤 🍣 🦞 🦪 🍘 🍡 🥠 🥮 🍧 🍨".split(
-    " "
-)
 
-def get_arg(message: Message):
-    msg = message.text
-    msg = msg.replace(" ", "", 1) if msg[1] == " " else msg
-    split = msg[1:].replace("\n", " \n").split(" ")
-    if " ".join(split[1:]).strip() == "":
-        return ""
-    return " ".join(split[1:])
-
-async def isAdmin(filter, client, update):
-    try:
-        member = await client.get_chat_member(chat_id=update.chat.id, user_id=update.from_user.id)
-    except FloodWait as wait_err:
-        await sleep(wait_err.value)
-    except UserNotParticipant:
-        return False
-    except:
-        return False
-
-    return member.status in [STATUS.OWNER, STATUS.ADMINISTRATOR]
-
-Admin = filters.create(isAdmin)
 
 @app.on_message(filters.command(["tagall", "@all"]) & ~BANNED_USERS)
 @language
@@ -59,8 +32,8 @@ async def tagall(client, message: Message, _):
         if not chat_id in spam_chats:
             break
         usrnum += 1
-        usrtxt += f"[{random.choice(emoji)}](tg://user?id={usr.user.id}) "
-        if usrnum == 5:
+        usrtxt += f"😘 [{usr.first_name}](tg://user?id={usr.id})\n "
+        if usrnum == 10:
             txt = f"**{args}**\n\n{usrtxt}"
             try:
                 await client.send_message(chat_id, txt)
