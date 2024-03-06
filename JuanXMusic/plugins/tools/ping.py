@@ -14,7 +14,11 @@ from JuanXMusic.utils.inline import supp_markup
 from config import BANNED_USERS, PING_IMG_URL
 
 
+
 spam_chats = []
+emoji = "😀 😃 😄 😁 😆 😅 😂 🤣 😭 😗 😙 😚 😘 🥰 😍 🤩 🥳 🤗 🙃 🙂 ☺️ 😊 😏 😌 😉 🤭 😶 😐 😑 😔 😋 😛 😝 😜 🤪 🤔 🤨 🧐 🙄 😒 😤 😠 🤬 ☹️ 🙁 😕 😟 🥺 😳 😬 🤐 🤫 😰 😨 😧 😦 😮 😯 😲 😱 🤯 😢 😥 😓 😞 😖 😣 😩 😫 🤤 🥱 😴 😪 🌛 🌜 🌚 🌝 🎲 🧩 ♟ 🎯 🎳 🎭💕 💞 💓 💗 💖 ❤️‍🔥 💔 🤎 🤍 🖤 ❤️ 🧡 💛 💚 💙 💜 💘 💝 🐵 🦁 🐯 🐱 🐶 🐺 🐻 🐨 🐼 🐹 🐭 🐰 🦊 🦝 🐮 🐷 🐽 🐗 🦓 🦄 🐴 🐸 🐲 🦎 🐉 🦖 🦕 🐢 🐊 🐍 🐁 🐀 🐇 🐈 🐩 🐕 🦮 🐕‍🦺 🐅 🐆 🐎 🐖 🐄 🐂 🐃 🐏 🐑 🐐 🦌 🦙 🦥 🦘 🐘 🦏 🦛 🦒 🐒 🦍 🦧 🐪 🐫 🐿️ 🦨 🦡 🦔 🦦 🦇 🐓 🐔 🐣 🐤 🐥 🐦 🦉 🦅 🦜 🕊️ 🦢 🦩 🦚 🦃 🦆 🐧 🦈 🐬 🐋 🐳 🐟 🐠 🐡 🦐 🦞 🦀 🦑 🐙 🦪 🦂 🕷️ 🦋 🐞 🐝 🦟 🦗 🐜 🐌 🐚 🕸️ 🐛 🐾 🌞 🤢 🤮 🤧 🤒 🍓 🍒 🍎 🍉 🍑 🍊 🥭 🍍 🍌 🌶 🍇 🥝 🍐 🍏 🍈 🍋 🍄 🥕 🍠 🧅 🌽 🥦 🥒 🥬 🥑 🥯 🥖 🥐 🍞 🥜 🌰 🥔 🧄 🍆 🧇 🥞 🥚 🧀 🥓 🥩 🍗 🍖 🥙 🌯 🌮 🍕 🍟 🥨 🥪 🌭 🍔 🧆 🥘 🍝 🥫 🥣 🥗 🍲 🍛 🍜 🍢 🥟 🍱 🍚 🥡 🍤 🍣 🦞 🦪 🍘 🍡 🥠 🥮 🍧 🍨".split(
+    " "
+)
 
 def get_arg(message: Message):
     msg = message.text
@@ -36,10 +40,11 @@ async def isAdmin(filter, client, update):
 
     return member.status in [STATUS.OWNER, STATUS.ADMINISTRATOR]
 
+Admin = filters.create(isAdmin)
 
 @app.on_message(filters.command(["tagall", "@all"]) & ~BANNED_USERS)
 @language
-async def tagall(client, message: Message, _):
+async def tagall(client, message: Message):
     await message.delete()
     chat_id = message.chat.id
     args = get_arg(message)
@@ -53,7 +58,7 @@ async def tagall(client, message: Message, _):
         if not chat_id in spam_chats:
             break
         usrnum += 1
-        usrtxt += f"😘</emoji> [{usr.first_name}](tg://user?id={usr.id})\n "
+        usrtxt += f"[{random.choice(emoji)}](tg://user?id={usr.user.id}) "
         if usrnum == 5:
             txt = f"**{args}**\n\n{usrtxt}"
             try:
@@ -73,7 +78,7 @@ async def tagall(client, message: Message, _):
 
 @app.on_message(filters.command(["cancel", "@batal"]) & ~BANNED_USERS)
 @language
-async def untag(client, message: Message, _):
+async def untag(client, message: Message):
     if not message.chat.id in spam_chats:
         return await message.reply("**Sepertinya tidak ada tagall disini.**")
     else:
