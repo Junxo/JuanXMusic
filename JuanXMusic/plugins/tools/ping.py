@@ -14,6 +14,7 @@ from JuanXMusic.utils.inline import supp_markup
 from config import BANNED_USERS, PING_IMG_URL
 
 
+spam_chats = []
 
 def get_arg(message: Message):
     msg = message.text
