@@ -15,6 +15,14 @@ from config import BANNED_USERS, PING_IMG_URL
 
 
 
+def get_arg(message: Message):
+    msg = message.text
+    msg = msg.replace(" ", "", 1) if msg[1] == " " else msg
+    split = msg[1:].replace("\n", " \n").split(" ")
+    if " ".join(split[1:]).strip() == "":
+        return ""
+    return " ".join(split[1:])
+
 
 @app.on_message(filters.command(["tagall", "@all"]) & ~BANNED_USERS)
 @language
