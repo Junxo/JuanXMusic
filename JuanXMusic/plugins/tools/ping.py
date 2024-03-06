@@ -54,7 +54,7 @@ async def tagall(client, message: Message, _):
             break
         usrnum += 1
         usrtxt += f"😘 [{usr.first_name}](tg://user?id={usr.id})\n "
-        if usrnum == 10:
+        if usrnum == 5:
             txt = f"**{args}**\n\n{usrtxt}"
             try:
                 await client.send_message(chat_id, txt)
