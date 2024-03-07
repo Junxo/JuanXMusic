@@ -26,7 +26,7 @@ def get_arg(message: Message, _):
 
 @app.on_message(filters.command(["tol"]) & filters.private & ~BANNED_USERS)
 @language
-async def tagall(cli, message: Message, _, chat_id):
+async def tagall(client, message: Message, _):
     await message.delete()
     chat_id = message.chat.id
     args = get_arg(message)
@@ -60,7 +60,7 @@ async def tagall(cli, message: Message, _, chat_id):
 
 @app.on_message(filters.command(["cancel"]) & filters.private & ~BANNED_USERS)
 @language
-async def untag(cli, message: Message, _, chat_id):
+async def untag(client, message: Message, _):
     if not message.chat.id in spam_chats:
         return await message.reply("**Sepertinya tidak ada tagall disini.**")
     else:
