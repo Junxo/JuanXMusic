@@ -36,7 +36,7 @@ def get_arg(client, message: Message, _):
         return ""
     return " ".join(split[1:])
 
-async def isAdmin(filter, client, message: Message, _):
+async def isAdmin((client, message: Message, _):
     try:
         member = await client.get_chat_member(chat_id=update.chat.id, user_id=update.from_user.id)
     except FloodWait as wait_err:
