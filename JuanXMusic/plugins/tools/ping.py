@@ -9,6 +9,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait, UserNotParticipant
 from JuanXMusic.utils.decorators import AdminRightsCheck
+from config import BANNED_USERS
 
 from JuanXMusic import *
 
@@ -30,7 +31,7 @@ def get_arg(message: Message, _):
 
 
 @app.on_message(filters.command(["tol"]) & filters.private & ~BANNED_USERS)
-AdminRightsCheck
+@AdminRightsCheck
 async def tagall(cli, message: Message, _, chat_id):
     await message.delete()
     chat_id = message.chat.id
@@ -64,7 +65,7 @@ async def tagall(cli, message: Message, _, chat_id):
         pass
 
 @app.on_message(filters.command(["cancel"]) & filters.private & ~BANNED_USERS)
-AdminRightsCheck
+@AdminRightsCheck
 async def untag(cli, message: Message, _, chat_id):
     if not message.chat.id in spam_chats:
         return await message.reply("**Sepertinya tidak ada tagall disini.**")
