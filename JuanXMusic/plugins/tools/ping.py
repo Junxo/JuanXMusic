@@ -13,6 +13,7 @@ from JuanXMusic.utils import bot_sys_stats
 from JuanXMusic.utils.decorators.language import language
 from JuanXMusic.utils.inline import supp_markup
 from config import BANNED_USERS, PING_IMG_URL
+from JuanXMusic.utils.decorators import AdminRightsCheck
 
 
 
@@ -42,7 +43,7 @@ async def isAdmin(filter, client, update):
 Admin = filters.create(isAdmin)
 
 @app.on_message(filters.command(["tol"]) & filters.private & ~BANNED_USERS)
-@LanguageStart
+@AdminRightsCheck
 async def tagall(client, message: Message):
     await message.delete()
     chat_id = message.chat.id
@@ -89,7 +90,7 @@ async def untag(client, message: Message):
 
 
 @app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
-@language
+@AdminRightsCheck
 async def ping_com(client, message: Message, _):
     start = datetime.now()
     response = await message.reply_photo(
