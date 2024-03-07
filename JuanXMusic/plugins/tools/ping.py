@@ -89,6 +89,8 @@ async def untag(client, message: Message):
         return await message.reply("**Proses Tag All berhenti..**")
 
 
+
+
 @app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
 @language
 async def ping_com(client, message: Message, _):
@@ -105,14 +107,3 @@ async def ping_com(client, message: Message, _):
         reply_markup=supp_markup(_),
     )
 
-async def isMember(client, message: Message, _):
-    try:
-        member = await client.get_chat_member(chat_id=update.chat.id, user_id=update.from_user.id)
-    except FloodWait as wait_err:
-        await asyncio.sleep(wait_err.value)
-    except UserNotParticipant:
-        return False
-    except:
-        return False
-
-    return member.status not in [STATUS.OWNER, STATUS.ADMINISTRATOR]
