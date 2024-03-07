@@ -1,14 +1,17 @@
-from JuanXMusic import app 
 import asyncio
-import random
-from pyrogram import Client, filters
-from pyrogram.errors import UserNotParticipant
-from pyrogram.types import ChatPermissions
+from pyrogram.enums import ChatType, ChatMemberStatus
+from JuanXMusic import app
+from pyrogram import filters
+from JuanXMusic.utils.decorators.language import language
+from config import BANNED_USERS
+
+
 
 SPAM_CHATS = []
 
 
-@app.on_message(filters.command(["utag", "uall"]) & filters.group & admin_filter)
+@app.on_message(filters.command(["utag", "uall"]) & ~BANNED_USERS)
+@language
 async def tag_all_users(_,message): 
     replied = message.reply_to_message  
     if len(message.command) < 2 and not replied:
@@ -53,7 +56,8 @@ async def tag_all_users(_,message):
         except Exception:
             pass        
            
-@app.on_message(filters.command("cancel") & ~filters.private)
+@app.on_message(filters.command("cancel") & ~BANNED_USERS)
+@language
 async def cancelcmd(_, message):
     chat_id = message.chat.id
     if chat_id in SPAM_CHATS:
