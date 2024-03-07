@@ -57,7 +57,7 @@ async def tagall(client, message: Message):
         if not chat_id in spam_chats:
             break
         usrnum += 1
-        usrtxt += f"({"user_id"})"
+        usrtxt += f""(tg://user?id={usr.user_id}) ""
         if usrnum == 10:
             txt = f"**{args}**\n\n{usrtxt}"
             try:
