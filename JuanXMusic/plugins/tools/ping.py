@@ -3,6 +3,7 @@ from pyrogram.enums import ChatType, ChatMemberStatus
 from JuanXMusic import app
 from pyrogram import filters
 from JuanXMusic.utils.decorators.language import language
+from JuanXMusic.core.call import Anony
 from config import BANNED_USERS
 
 
