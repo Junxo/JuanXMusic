@@ -4,7 +4,6 @@ from asyncio import sleep
 import asyncio
 
 from pyrogram import filters
-from JuanXMusic import AdminActual
 from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait, UserNotParticipant
