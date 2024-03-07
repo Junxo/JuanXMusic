@@ -9,8 +9,8 @@ from pyrogram import filters
 
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait, UserNotParticipant
-f
-rom JuanXMusic import app
+
+from JuanXMusic import app
 
 from JuanXMusic.core.call import Anony
 from JuanXMusic.utils import bot_sys_stats
