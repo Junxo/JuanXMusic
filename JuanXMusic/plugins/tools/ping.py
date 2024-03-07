@@ -77,7 +77,7 @@ async def tagall(client, message: Message):
         pass
 
 @app.on_message(filters.command(["cancel"]) & filters.private & ~BANNED_USERS)
-@LanguageStart
+@AdminRightsCheck
 async def untag(client, message: Message):
     if not message.chat.id in spam_chats:
         return await message.reply("**Sepertinya tidak ada tagall disini.**")
@@ -90,7 +90,7 @@ async def untag(client, message: Message):
 
 
 @app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
-@AdminRightsCheck
+@language
 async def ping_com(client, message: Message, _):
     start = datetime.now()
     response = await message.reply_photo(
