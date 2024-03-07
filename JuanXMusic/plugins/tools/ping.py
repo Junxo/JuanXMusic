@@ -41,7 +41,7 @@ async def isAdmin(filter, client, message: Message, _):
 
 Admin = filters.create(isAdmin)
 
-@app.on_message(filters.command(["tol"]) & filters.private & ~BANNED_USERS)
+@app.on_message(filters.command(["tall"]) & filters.private & ~BANNED_USERS)
 @language
 async def tagall(client, message: Message, _):
     await message.delete()
