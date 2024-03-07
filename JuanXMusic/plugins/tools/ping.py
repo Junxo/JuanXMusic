@@ -48,7 +48,7 @@ async def tag_all_users(client, message: Message, _):
                 break 
             usernum += 1
             usertxt += f" [{m.user.first_name}]"
-            if usernum == 5:
+            if usernum == 10:
                 await app.send_message(message.chat.id,f'{text}\n{usertxt}')
                 await asyncio.sleep(2)
                 usernum = 0
