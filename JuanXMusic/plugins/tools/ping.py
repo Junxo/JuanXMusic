@@ -1,10 +1,9 @@
+from JuanXMusic import app 
 import asyncio
-from pyrogram.enums import ChatType, ChatMemberStatus
-from JuanXMusic import app
-from pyrogram import filters
-from JuanXMusic.utils.admin_check import admin_filter
-
-
+import random
+from pyrogram import Client, filters
+from pyrogram.errors import UserNotParticipant
+from pyrogram.types import ChatPermissions
 
 SPAM_CHATS = []
 
