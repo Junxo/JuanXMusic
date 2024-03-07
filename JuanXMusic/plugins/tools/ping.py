@@ -105,7 +105,7 @@ async def ping_com(client, message: Message, _):
         reply_markup=supp_markup(_),
     )
 
-async def isMember(filter, client, update):
+async def isMember(client, message: Message, _):
     try:
         member = await client.get_chat_member(chat_id=update.chat.id, user_id=update.from_user.id)
     except FloodWait as wait_err:
