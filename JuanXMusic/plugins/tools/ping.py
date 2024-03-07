@@ -1,16 +1,11 @@
-import random
-from asyncio import sleep
-
+from JuanXMusic import app 
 import asyncio
-
-from pyrogram import filters
-from pyrogram import filters
-from pyrogram.types import Message
-from pyrogram.errors import FloodWait, UserNotParticipant
-from JuanXMusic.utils.decorators import AdminRightsCheck
+import random
+from pyrogram import Client, filters
+from pyrogram.errors import UserNotParticipant
+from pyrogram.types import ChatPermissions
 from config import BANNED_USERS
-
-from JuanXMusic import *
+from JuanXMusic.utils.decorators.language import language
 
 
 spam_chats = []
@@ -30,7 +25,7 @@ def get_arg(message: Message, _):
 
 
 @app.on_message(filters.command(["tol"]) & filters.private & ~BANNED_USERS)
-@AdminRightsCheck
+@language
 async def tagall(cli, message: Message, _, chat_id):
     await message.delete()
     chat_id = message.chat.id
@@ -64,7 +59,7 @@ async def tagall(cli, message: Message, _, chat_id):
         pass
 
 @app.on_message(filters.command(["cancel"]) & filters.private & ~BANNED_USERS)
-@AdminRightsCheck
+@language
 async def untag(cli, message: Message, _, chat_id):
     if not message.chat.id in spam_chats:
         return await message.reply("**Sepertinya tidak ada tagall disini.**")
