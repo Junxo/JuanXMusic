@@ -13,7 +13,7 @@ SPAM_CHATS = []
 
 @app.on_message(filters.command(["utag", "uall"]) & ~BANNED_USERS)
 @language
-async def tag_all_users(_,message): 
+async def tag_all_users(client, message: Message, _):
     replied = message.reply_to_message  
     if len(message.command) < 2 and not replied:
         await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴏʀ ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴛᴀɢ ᴀʟʟ") 
@@ -59,7 +59,7 @@ async def tag_all_users(_,message):
            
 @app.on_message(filters.command("cancel") & ~BANNED_USERS)
 @language
-async def cancelcmd(_, message):
+async def cancelcmd(client, message: Message, _):
     chat_id = message.chat.id
     if chat_id in SPAM_CHATS:
         try :
