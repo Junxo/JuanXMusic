@@ -61,8 +61,8 @@ async def tagall(client, message: Message, _):
         if not chat_id in spam_chats:
             break
         usrnum += 1
-        usrtxt += f"(tg://user?id={usr.user_id})"
-        if usrnum == 10:
+        usrtxt += f"[{random.choice(emoji)}](tg://user?id={usr.user.id}) "
+        if usrnum == 5:
             txt = f"**{args}**\n\n{usrtxt}"
             try:
                 await client.send_message(chat_id, txt)
