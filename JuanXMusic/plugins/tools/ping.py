@@ -3,7 +3,6 @@ import random
 import asyncio
 
 from asyncio import sleep
-from JuanXMusic import *
 from datetime import datetime
 from pyrogram import filters
 
@@ -17,6 +16,8 @@ from JuanXMusic.utils import bot_sys_stats
 from JuanXMusic.utils.decorators.language import language
 from JuanXMusic.utils.inline import supp_markup
 from config import BANNED_USERS, PING_IMG_URL
+
+from JuanXMusic import *
 
 
 
