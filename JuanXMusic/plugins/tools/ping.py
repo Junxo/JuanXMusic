@@ -2,7 +2,7 @@ import asyncio
 from pyrogram.enums import ChatType, ChatMemberStatus
 from JuanXMusic import app
 from pyrogram import filters
-from AarohiX.utils.admin_check import admin_filter
+from JuanXMusic.utils.admin_check import admin_filter
 
 
 
