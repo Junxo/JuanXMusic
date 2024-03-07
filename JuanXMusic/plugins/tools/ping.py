@@ -1,4 +1,5 @@
 import asyncio
+from pyrogram.types import Message
 from pyrogram.enums import ChatType, ChatMemberStatus
 from JuanXMusic import app
 from pyrogram import filters
